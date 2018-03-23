@@ -1,0 +1,13 @@
+<h2>Show Lunch</h2>
+
+<ul>
+
+  <li>
+    <strong>Date:</strong>
+    <%= @lunch.date %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: lunch_path(@conn, :edit, @lunch) %></span>
+<span><%= link "Back", to: lunch_path(@conn, :index) %></span>

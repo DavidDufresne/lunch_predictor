@@ -1,0 +1,5 @@
+<h2>New Lunch</h2>
+
+<%= render "form.html", Map.put(assigns, :action, lunch_path(@conn, :create)) %>
+
+<span><%= link "Back", to: lunch_path(@conn, :index) %></span>

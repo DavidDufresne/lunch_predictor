@@ -1,0 +1,26 @@
+<h2>Listing Lunches</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Date</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for lunch <- @lunches do %>
+    <tr>
+      <td><%= lunch.date %></td>
+
+      <td class="text-right">
+        <span><%= link "Show", to: lunch_path(@conn, :show, lunch), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Edit", to: lunch_path(@conn, :edit, lunch), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Delete", to: lunch_path(@conn, :delete, lunch), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Lunch", to: lunch_path(@conn, :new) %></span>

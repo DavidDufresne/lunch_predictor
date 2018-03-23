@@ -18,6 +18,7 @@ defmodule LunchPredictorWeb.Router do
 
     get "/", PageController, :index
 
+    resources "/lunches", LunchController
     resources "/providers", ProviderController
   end
 
