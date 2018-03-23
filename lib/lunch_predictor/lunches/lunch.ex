@@ -2,10 +2,11 @@ defmodule LunchPredictor.Lunches.Lunch do
   use Ecto.Schema
   import Ecto.Changeset
 
+  alias LunchPredictor.Providers.Provider
 
   schema "lunches" do
     field :date, :date
-    field :provider_id, :id
+    belongs_to :provider, Provider
 
     timestamps()
   end
@@ -13,7 +14,7 @@ defmodule LunchPredictor.Lunches.Lunch do
   @doc false
   def changeset(lunch, attrs) do
     lunch
-    |> cast(attrs, [:date])
-    |> validate_required([:date])
+    |> cast(attrs, [:date, :provider_id])
+    |> validate_required([:date, :provider_id])
   end
 end

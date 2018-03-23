@@ -3,6 +3,7 @@
 <table class="table">
   <thead>
     <tr>
+      <th>Provider</th>
       <th>Date</th>
 
       <th></th>
@@ -11,6 +12,7 @@
   <tbody>
 <%= for lunch <- @lunches do %>
     <tr>
+      <td><%= lunch.provider.name %></td>
       <td><%= lunch.date %></td>
 
       <td class="text-right">

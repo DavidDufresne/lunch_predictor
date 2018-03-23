@@ -3,6 +3,10 @@
 <ul>
 
   <li>
+    <strong>Provider:</strong>
+    <%= @lunch.provider.name %>
+  </li>
+  <li>
     <strong>Date:</strong>
     <%= @lunch.date %>
   </li>

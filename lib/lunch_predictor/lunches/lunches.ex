@@ -101,4 +101,8 @@ defmodule LunchPredictor.Lunches do
   def change_lunch(%Lunch{} = lunch) do
     Lunch.changeset(lunch, %{})
   end
+
+  def load_provider(schema) do
+    Repo.preload(schema, :provider)
+  end
 end
