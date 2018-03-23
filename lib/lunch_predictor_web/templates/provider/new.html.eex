@@ -1,0 +1,5 @@
+<h2>New Provider</h2>
+
+<%= render "form.html", Map.put(assigns, :action, provider_path(@conn, :create)) %>
+
+<span><%= link "Back", to: provider_path(@conn, :index) %></span>

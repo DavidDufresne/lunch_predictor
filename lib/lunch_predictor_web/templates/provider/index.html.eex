@@ -1,0 +1,26 @@
+<h2>Listing Providers</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for provider <- @providers do %>
+    <tr>
+      <td><%= provider.name %></td>
+
+      <td class="text-right">
+        <span><%= link "Show", to: provider_path(@conn, :show, provider), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Edit", to: provider_path(@conn, :edit, provider), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Delete", to: provider_path(@conn, :delete, provider), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Provider", to: provider_path(@conn, :new) %></span>

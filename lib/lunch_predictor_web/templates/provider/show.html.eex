@@ -1,0 +1,13 @@
+<h2>Show Provider</h2>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @provider.name %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: provider_path(@conn, :edit, @provider) %></span>
+<span><%= link "Back", to: provider_path(@conn, :index) %></span>
