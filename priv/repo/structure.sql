@@ -35,6 +35,38 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
+-- Name: lunches; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE lunches (
+    id bigint NOT NULL,
+    date date,
+    provider_id bigint,
+    inserted_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: lunches_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE lunches_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: lunches_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE lunches_id_seq OWNED BY lunches.id;
+
+
+--
 -- Name: providers; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -76,10 +108,25 @@ CREATE TABLE schema_migrations (
 
 
 --
+-- Name: lunches id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY lunches ALTER COLUMN id SET DEFAULT nextval('lunches_id_seq'::regclass);
+
+
+--
 -- Name: providers id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY providers ALTER COLUMN id SET DEFAULT nextval('providers_id_seq'::regclass);
+
+
+--
+-- Name: lunches lunches_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY lunches
+    ADD CONSTRAINT lunches_pkey PRIMARY KEY (id);
 
 
 --
@@ -99,8 +146,23 @@ ALTER TABLE ONLY schema_migrations
 
 
 --
+-- Name: lunches_provider_id_index; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX lunches_provider_id_index ON lunches USING btree (provider_id);
+
+
+--
+-- Name: lunches lunches_provider_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY lunches
+    ADD CONSTRAINT lunches_provider_id_fkey FOREIGN KEY (provider_id) REFERENCES providers(id);
+
+
+--
 -- PostgreSQL database dump complete
 --
 
-INSERT INTO public."schema_migrations" (version) VALUES (20180323181222);
+INSERT INTO public."schema_migrations" (version) VALUES (20180323181222), (20180323183031);
 
