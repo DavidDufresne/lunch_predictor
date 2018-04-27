@@ -3,7 +3,6 @@ defmodule LunchPredictorWeb.LunchController do
 
   alias LunchPredictor.Lunches
   alias LunchPredictor.Lunches.Lunch
-  alias LunchPredictor.Providers
 
   def index(conn, _params) do
     lunches = Lunches.list_lunches()
@@ -13,7 +12,7 @@ defmodule LunchPredictorWeb.LunchController do
 
   def new(conn, _params) do
     changeset = Lunches.change_lunch(%Lunch{})
-    providers = Providers.list_providers
+    providers = Lunches.list_providers
 
     render(conn, "new.html", changeset: changeset, providers: providers)
   end
@@ -38,14 +37,14 @@ defmodule LunchPredictorWeb.LunchController do
   def edit(conn, %{"id" => id}) do
     lunch = Lunches.get_lunch!(id)
     changeset = Lunches.change_lunch(lunch)
-    providers = Providers.list_providers
+    providers = Lunches.list_providers
 
     render(conn, "edit.html", lunch: lunch, changeset: changeset, providers: providers)
   end
 
   def update(conn, %{"id" => id, "lunch" => lunch_params}) do
     lunch = Lunches.get_lunch!(id)
-    providers = Providers.list_providers
+    providers = Lunches.list_providers
 
     case Lunches.update_lunch(lunch, lunch_params) do
       {:ok, lunch} ->

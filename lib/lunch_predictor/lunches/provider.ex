@@ -1,4 +1,4 @@
-defmodule LunchPredictor.Providers.Provider do
+defmodule LunchPredictor.Lunches.Provider do
   use Ecto.Schema
   import Ecto.Changeset
 

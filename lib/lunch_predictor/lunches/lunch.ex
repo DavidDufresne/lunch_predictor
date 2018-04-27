@@ -2,7 +2,7 @@ defmodule LunchPredictor.Lunches.Lunch do
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias LunchPredictor.Providers.Provider
+  alias LunchPredictor.Lunches.Provider
 
   schema "lunches" do
     field :date, :date
