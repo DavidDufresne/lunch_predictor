@@ -1,36 +1,26 @@
-<div class="jumbotron">
-  <h2><%= gettext "Welcome to %{name}!", name: "Phoenix" %></h2>
-  <p class="lead">A productive web framework that<br />does not compromise speed and maintainability.</p>
-</div>
+<div class="row">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
 
-<div class="row marketing">
-  <div class="col-lg-6">
-    <h4>Resources</h4>
-    <ul>
-      <li>
-        <a href="http://phoenixframework.org/docs/overview">Guides</a>
-      </li>
-      <li>
-        <a href="https://hexdocs.pm/phoenix">Docs</a>
-      </li>
-      <li>
-        <a href="https://github.com/phoenixframework/phoenix">Source</a>
-      </li>
-    </ul>
-  </div>
+        <th>Prior</th>
+      </tr>
+    </thead>
+    <tfoot>
+      <tr>
+        <td>Sum</td>
+        <td><%= Enum.reduce(@providers_with_priors, 0, fn({provider, prior}, acc) -> prior + acc end) %></td>
+      </tr>
+    </tfoot>
+    <tbody>
+      <%= for {provider, prior} <- @providers_with_priors do %>
+        <tr>
+          <td><%= provider.name %></td>
 
-  <div class="col-lg-6">
-    <h4>Help</h4>
-    <ul>
-      <li>
-        <a href="http://groups.google.com/group/phoenix-talk">Mailing list</a>
-      </li>
-      <li>
-        <a href="http://webchat.freenode.net/?channels=elixir-lang">#elixir-lang on freenode IRC</a>
-      </li>
-      <li>
-        <a href="https://twitter.com/elixirphoenix">@elixirphoenix</a>
-      </li>
-    </ul>
-  </div>
+          <td><%= prior %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
