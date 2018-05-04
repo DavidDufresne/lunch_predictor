@@ -43,7 +43,8 @@ CREATE TABLE lunches (
     date date,
     provider_id bigint,
     inserted_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    day_of_week integer
 );
 
 
@@ -164,5 +165,5 @@ ALTER TABLE ONLY lunches
 -- PostgreSQL database dump complete
 --
 
-INSERT INTO public."schema_migrations" (version) VALUES (20180323181222), (20180323183031);
+INSERT INTO public."schema_migrations" (version) VALUES (20180323181222), (20180323183031), (20180504202359);
 
