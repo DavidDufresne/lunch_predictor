@@ -2,6 +2,10 @@
   <%= "Happy #{@day_of_week}!" %>
 </div>
 <div class="row">
+  <span><%= link "Lunches", to: lunch_path(@conn, :index) %></span>
+  <span><%= link "Providers", to: provider_path(@conn, :index) %></span>
+</div>
+<div class="row">
   <table class="table">
     <thead>
       <tr>
