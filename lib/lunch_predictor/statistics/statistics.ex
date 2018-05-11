@@ -13,4 +13,11 @@ defmodule LunchPredictor.Statistics do
   def denormalized_posterior(provider_id, day_of_week) do
     prior(provider_id) * day_of_week_likelihood(day_of_week, provider_id)
   end
+
+  def map_estimate(today) do
+    # features
+    day_of_week = Date.day_of_week(today)
+    providers = Lunches.list_providers()
+    Enum.max_by(providers, fn(provider) -> denormalized_posterior(provider.id, day_of_week) end)
+  end
 end
