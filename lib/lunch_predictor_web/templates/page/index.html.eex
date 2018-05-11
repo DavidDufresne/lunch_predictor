@@ -11,21 +11,15 @@
       <tr>
         <th>Name</th>
 
-        <th>Prior</th>
+        <th>Denormalized Posterior</th>
       </tr>
     </thead>
-    <tfoot>
-      <tr>
-        <td>Sum</td>
-        <td><%= Enum.reduce(@providers_with_priors, 0, fn({provider, prior}, acc) -> prior + acc end) %></td>
-      </tr>
-    </tfoot>
     <tbody>
-      <%= for {provider, prior} <- @providers_with_priors do %>
+      <%= for {provider, posterior} <- @providers_with_posteriors do %>
         <tr>
           <td><%= provider.name %></td>
 
-          <td><%= prior %></td>
+          <td><%= posterior %></td>
         </tr>
       <% end %>
     </tbody>

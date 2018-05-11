@@ -112,8 +112,20 @@ defmodule LunchPredictor.Lunches do
       where: l.provider_id == ^provider_id
   end
 
+  def with_day_of_week(query, day_of_week) do
+    from l in query,
+      where: l.day_of_week == ^day_of_week
+  end
+
   def number_of_lunches_with_provider_id(provider_id) do
     Lunch
+    |> with_provider_id(provider_id)
+    |> Repo.aggregate(:count, :id)
+  end
+
+  def number_of_lunches_with_day_of_week_and_provider_id(day_of_week, provider_id) do
+    Lunch
+    |> with_day_of_week(day_of_week)
     |> with_provider_id(provider_id)
     |> Repo.aggregate(:count, :id)
   end

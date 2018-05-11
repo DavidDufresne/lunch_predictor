@@ -16,9 +16,11 @@ defmodule LunchPredictorWeb.PageController do
 
   def index(conn, _params) do
     providers = Lunches.list_providers()
-    priors = Enum.map(providers, fn(provider) -> Statistics.prior(provider.id) end)
-    providers_with_priors = Enum.zip(providers, priors)
-    day_of_week = @english_day_names[Date.day_of_week(Date.utc_today)]
-    render conn, "index.html", providers_with_priors: providers_with_priors, day_of_week: day_of_week
+    day_of_week = Date.day_of_week(Date.utc_today)
+    providers_with_posteriors = Enum.map(providers, fn(provider) ->
+      {provider, Statistics.denormalized_posterior(provider.id, day_of_week )}
+    end)
+    day_of_week_name = @english_day_names[Date.day_of_week(Date.utc_today)]
+    render conn, "index.html", providers_with_posteriors: providers_with_posteriors, day_of_week: day_of_week_name
   end
 end
