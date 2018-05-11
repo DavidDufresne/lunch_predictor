@@ -1,4 +1,7 @@
 <div class="row">
+  <%= "Happy #{@day_of_week}!" %>
+</div>
+<div class="row">
   <table class="table">
     <thead>
       <tr>
