@@ -1,11 +1,12 @@
 <div class="row">
   <%= "Happy #{@day_of_week}!" %>
 </div>
+<div class="row">The most recent lunch provider was <b><%= @last_provider.name %></b></div>
+<div class="row">My estimated lunch provider for today is <b><%= @estimate.name %></b></div>
 <div class="row">
   <span><%= link "Lunches", to: lunch_path(@conn, :index) %></span>
   <span><%= link "Providers", to: provider_path(@conn, :index) %></span>
 </div>
-<div class="row">My estimated lunch provider for today is <b><%= @estimate.name %></b></div>
 <div class="row">
   <table class="table">
     <thead>

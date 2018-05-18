@@ -228,4 +228,12 @@ defmodule LunchPredictor.Lunches do
   def change_provider(%Provider{} = provider) do
     Provider.changeset(provider, %{})
   end
+
+  def latest_provider(%Date{} = date) do
+    Repo.one(from p in Provider,
+      inner_join: l in assoc(p, :lunches),
+      where: l.date < ^date,
+      order_by: [desc: l.date],
+      limit: 1)
+  end
 end

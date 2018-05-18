@@ -2,9 +2,11 @@ defmodule LunchPredictor.Lunches.Provider do
   use Ecto.Schema
   import Ecto.Changeset
 
+  alias LunchPredictor.Lunches.Lunch
 
   schema "providers" do
     field :name, :string
+    has_many :lunches, Lunch
 
     timestamps()
   end
