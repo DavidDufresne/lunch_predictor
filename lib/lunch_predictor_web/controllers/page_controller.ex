@@ -17,14 +17,21 @@ defmodule LunchPredictorWeb.PageController do
   def index(conn, _params) do
     providers = Lunches.list_providers()
     day_of_week = Date.day_of_week(Date.utc_today)
+    last_provider = Lunches.latest_provider(Date.utc_today)
     providers_with_posteriors =
       Enum.map(providers, fn(provider) ->
-        {provider, Statistics.denormalized_posterior(provider.id, day_of_week )}
+        {
+          provider,
+          Statistics.denormalized_posterior(
+            provider.id,
+            day_of_week,
+            last_provider.id
+          )
+        }
       end)
       |> Enum.sort_by(fn({_, posterior}) -> -posterior end)
     estimate = Statistics.map_estimate(Date.utc_today)
     day_of_week_name = @english_day_names[Date.day_of_week(Date.utc_today)]
-    last_provider = Lunches.latest_provider(Date.utc_today)
     render conn, "index.html", providers_with_posteriors: providers_with_posteriors, day_of_week: day_of_week_name, last_provider: last_provider, estimate: estimate
   end
 end

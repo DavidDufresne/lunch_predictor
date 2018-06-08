@@ -130,6 +130,11 @@ defmodule LunchPredictor.Lunches do
     |> Repo.aggregate(:count, :id)
   end
 
+  def number_of_lunches_with_previous_provider_id_and_provider_id(previous_provider_id, provider_id) do
+    Repo.query!("select * from (select provider_id, lag(lunches.provider_id) OVER (order by date) as previous_provider_id from lunches) as lunch_pairs where provider_id = #{provider_id} and previous_provider_id = #{previous_provider_id};")
+    |> Map.get(:num_rows)
+  end
+
   def number_of_lunches do
     Lunch
     |> Repo.aggregate(:count, :id)
