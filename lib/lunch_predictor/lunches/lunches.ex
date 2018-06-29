@@ -19,7 +19,8 @@ defmodule LunchPredictor.Lunches do
 
   """
   def list_lunches do
-    Repo.all(Lunch)
+    query = from(l in Lunch, order_by: l.date)
+    Repo.all(query)
   end
 
   @doc """
